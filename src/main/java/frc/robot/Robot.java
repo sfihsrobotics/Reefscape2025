@@ -7,7 +7,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.PWMSparkMax;
+import com.revrobotics.spark.SparkMax;
+import com.revrobotics.spark.SparkLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 
@@ -22,16 +24,16 @@ public class Robot extends TimedRobot {
   private final RobotContainer m_robotContainer;
 
   //Instead of Victor whatever, we will use PWMSparkMaxk
-  private final PWMSparkMax leftMotorSpark = new PWMSparkMax(1);
-  private final PWMSparkMax backLeftMotor = new PWMSparkMax(4);
-  private final PWMSparkMax rightMotorSpark = new PWMSparkMax(2);
-  private final PWMSparkMax backRightMotor = new PWMSparkMax(12);
+  private final SparkMax leftMotorSpark = new SparkMax(1,MotorType.kBrushed);
+  private final SparkMax backLeftMotor = new SparkMax(4,MotorType.kBrushed);
+  private final SparkMax rightMotorSpark = new SparkMax(2,MotorType.kBrushed);
+  private final SparkMax backRightMotor = new SparkMax(12,MotorType.kBrushed);
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */
-  private final SpeedControllerGroup rightSpeedGroup = new SpeedControllerGroup(rightMotorSpark, backRightMotor);
-  private final SpeedControllerGroup leftSpeedGroup = new SpeedControllerGroup(leftMotorSpark, backLeftMotor);
+  // private final SpeedControllerGroup rightSpeedGroup = new SpeedControllerGroup(rightMotorSpark, backRightMotor);
+  // private final SpeedControllerGroup leftSpeedGroup = new SpeedControllerGroup(leftMotorSpark, backLeftMotor);
 
   DifferentialDrive drivetrain = new DifferentialDrive(leftMotorSpark, rightMotorSpark);
 
@@ -95,11 +97,11 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-/* 
-    leftMotorSpark.set(0.25);
-    rightMotorSpark.set(0.25);
-    backLeftMotor.set(0.25);
-    backRightMotor.set(0.25);*/
+ 
+    leftMotorSpark.set(0.5);
+    rightMotorSpark.set(0.5);
+    backLeftMotor.set(0.5);
+    backRightMotor.set(0.5);
   }
 
   @Override
